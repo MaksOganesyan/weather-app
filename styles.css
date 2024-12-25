@@ -1,0 +1,137 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap');
+
+:root {
+    font-size: 62.5%;
+    --main-font-color: #F5F5F5;
+    --ssecond-font-color:#000000;
+    --main-font-family:"Montserrat Alternates";
+    --main-font-weight:700;
+   
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* outline: 4px solid red !important; */
+}
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #759DC6;
+}
+
+ul,
+ol {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+header {
+    background-color: #E5F0FB;
+    font-weight: var(--main-font-weight);
+}
+
+header  .wrapper{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    font-family: var(--main-font-family),sans-serif;
+}
+
+
+
+
+.hero {
+   font-family: var(--main-font-family),sans-serif;
+   
+   
+}
+
+.hero h2 {
+    color: white;
+    font-size: 2.8rem;
+    margin-top: 17.5rem;
+    margin-bottom: 9rem;
+    text-align: center;
+}
+
+
+
+.enter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.enter-form input {
+    width: 29.5rem;
+    height: 4.8rem;
+    border: 0.5rem solid transparent;
+    border-radius: 2rem;
+    padding-left:1.4rem ;
+    font-size: 1.6rem;
+    
+}
+
+.enter-form ::placeholder {
+    color: #070707;
+    font-weight: var(--main-font-weight);
+}
+
+.enter-btn {
+    text-decoration: none;
+    font-size: 1.6rem;
+    width: 15rem;
+    height: 4rem;
+    background-color: #0B437B;
+    color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    margin-top: 7.5rem;
+}
+
+.reg-menu {
+    display: inline-flex;
+    gap: 2.1rem;
+    margin-top: 9rem;
+    
+}
+
+.reg-menu a {
+    color: var(--main-font-color);
+    font-size: 1.4rem;
+    font-weight: var(--main-font-weight);
+}
+
+.reg-btn {
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    padding: 1rem;
+   
+   
+}
