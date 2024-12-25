@@ -53,8 +53,6 @@ header {
     font-weight: var(--main-font-weight);
 }
 
-
-
 header  .wrapper{
     display: flex;
     align-items: center;

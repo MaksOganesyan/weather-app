@@ -1,0 +1,6 @@
+uvicorn app.main:app --reload
+.\env\scripts\activate
+uvicorn app.weather:app --reload
+uvicorn app.weather --reload
+
+
