@@ -185,15 +185,17 @@ figure {
 }
 
 h2 {
+    text-align: center;
     margin-top: 5.7rem;
-    margin-left: 1rem;
 }
 
 .notification {
-    margin: 1rem ;
+    margin-top: 2rem;
     display: flex;
-    justify-content: space-between;
-    
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 span {
