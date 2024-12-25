@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
-
+    
 </head>
+
 <body>
     <header>
         <div class="wrapper">
-            <h1>Возьми зонтик</h1> 
+            <h1>Возьми зонтик</h1>
             <picture>
                 <source media="(min-width: 390px)" srcset="image/umbrella.svg">
                 <img src="image/umbrella.svg" alt="иконка зонтика">
@@ -20,26 +23,26 @@
         </div>
     </header>
     <main>
-       <section class="hero">
-        <div class="wrapper">
-            <h2>Вход</h2>
-            <form action="#" method="post" class="enter-form">
+        <section class="hero">
+            <div class="wrapper">
+                <h2>Вход</h2>
+                <form action="#" method="post" class="enter-form">
+                    <label for="user-email">Email:</label>
+                    <input type="email" name="user-email" id="user-email" placeholder="Введите email" required>
 
-                <label for="user-email"></label>
-                <input type="email" name="user-email" placeholder="Введите email" required>
-                <label for="user-password"></label>
-                <input type="password" name="user-password" placeholder="Введите пароль" required>
-                <a href="#" class="enter-btn">Войти</a>
+                    <label for="user-password">Пароль:</label>
+                    <input type="password" name="user-password" id="user-password" placeholder="Введите пароль" required>
 
-                <ul class="reg-menu">
-                    <li><a href="">Нет аккаунта</a></li>
-                    <li><a class="reg-btn" href="">Регистрация</a></li>
-                </ul>
-                
-        </div>
+                    <button type="submit" class="enter-btn">Войти</button> <!-- Используем кнопку для отправки формы -->
 
-        </form>
-       </section>
+                    <ul class="reg-menu">
+                        <li><a href="#">Нет аккаунта</a></li>
+                        <li><a class="reg-btn" href="#">Регистрация</a></li>
+                    </ul>
+                </form>
+            </div>
+        </section>
     </main>
 </body>
+
 </html>

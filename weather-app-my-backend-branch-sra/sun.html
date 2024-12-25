@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Возьми зонтик</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="sun.css">
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -32,17 +32,17 @@
                 <p class="main-text">
                     Уведомления приходят утром,
                     если вероятность дождя
-                    составляет 50% и выше.Вы
+                    составляет 50% и выше. Вы
                     можете легко отключить
                     уведомления в настройках.
                 </p>
-                <div class="wheather">
+                <div class="weather">
                     <figure>
-                        <img src="image/sunny.png" alt="солнце">
-                        <figcaption>Солнечно</figcaption>
+                        <img class="weather-icon" src="image/sunny.png" alt="солнце">
+                        <figcaption class="weather-status">Солнечно</figcaption>
                     </figure>
                 </div>
-                <h2>Сегодня зонт не нужен!</h2>
+                <h2 class="umbrella-advice">Сегодня зонт не нужен!</h2>
                 <div class="notification">
                     <span>Напоминание о том,
                         что нужно взять зонт:</span>
@@ -53,10 +53,12 @@
                             <div class="layer"></div>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
         </section>
     </main>
+
+    
 </body>
 
 </html>

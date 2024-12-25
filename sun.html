@@ -7,6 +7,9 @@
     <title>Возьми зонтик</title>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="sun.css">
+    <!-- Подключаем старую версию Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
     <script src="script.js" defer></script> <!-- defer для асинхронного выполнения JS -->
 </head>
 
@@ -33,7 +36,7 @@
                 </p>
                 <div class="weather">
                     <figure>
-                        <img src="image/sunny.png" alt="солнце" class="weather-icon"> <!-- Картинка будет обновляться -->
+                        <img src="weather-app-my-backend-branch-sra/project_op/app/static/image/sunny.png" alt="rainy">
                         <figcaption class="weather-status">Солнечно</figcaption> <!-- Подпись будет изменяться -->
                     </figure>
                 </div>
