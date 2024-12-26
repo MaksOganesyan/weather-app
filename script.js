@@ -18,6 +18,12 @@ async function fetchWeather() {
       const weatherIcon = document.getElementById("weather-icon"); // Находим элемент для картинки
       const temperatureElement = document.getElementById("temperature"); // Находим элемент для температуры
 
+      // Получаем описание погоды и приводим к нижнему регистру
+      const weatherDescription = weatherData["Описание"] ? weatherData["Описание"].toLowerCase() : "";
+
+      // Логируем описание погоды для диагностики
+      console.log("Описание погоды (нижний регистр):", weatherDescription);
+
       // Обновляем описание погоды
       if (weatherStatus && weatherData["Описание"]) {
           weatherStatus.textContent = weatherData["Описание"];
@@ -30,12 +36,21 @@ async function fetchWeather() {
 
       // Обновляем картинку в зависимости от погоды
       if (weatherIcon) {
-          if (weatherData["Описание"].includes("пасмурно")) {
+          console.log("Описание погоды:", weatherDescription); // Логируем описание для проверки
+
+          // Расширим условия для обработки различных типов погоды
+          if (weatherDescription.includes("пасмурно") || weatherDescription.includes("облачно")) {
               weatherIcon.src = "http://localhost:8000/static/image/cloudy.png"; // Пример для облачности
-          } else if (weatherData["Описание"].includes("дождь")) {
+              console.log("Погода облачная, иконка: cloudy.png");
+          } else if (weatherDescription.includes("дождь")) {
               weatherIcon.src = "http://localhost:8000/static/image/rainy.png"; // Пример для дождя
-          } else if (weatherData["Описание"].includes("солнечно")) {
+              console.log("Погода дождливая, иконка: rainy.png");
+          } else if (weatherDescription.includes("солнечно")) {
               weatherIcon.src = "http://localhost:8000/static/image/sunny.png"; // Пример для солнечной погоды
+              console.log("Погода солнечная, иконка: sunny.png");
+          } else {
+              weatherIcon.src = "http://localhost:8000/static/image/default.png"; // Если нет совпадений, ставим дефолтное изображение
+              console.log("Неизвестная погода, иконка: default.png");
           }
       }
 
@@ -43,13 +58,13 @@ async function fetchWeather() {
       if (temperatureElement && weatherData["Температура воздуха"] !== undefined) {
           const temperature = weatherData["Температура воздуха"]; // Получаем температуру из ответа
           console.log("Температура из API:", temperature); // Логируем температуру
-          temperatureElement.textContent = `: ${temperature}°C`; // Обновляем температуру
+          temperatureElement.textContent = `${temperature}°C`; // Обновляем температуру
       }
 
       // Обновляем текст в зависимости от погоды
       if (umbrellaAdvice) {
           // Если облачно или дождливо, предлагаем взять зонт
-          if (weatherData["Описание"].includes("пасмурно") || weatherData["Описание"].includes("дождь") || weatherData["Описание"].includes("облачно")) {
+          if (weatherDescription.includes("пасмурно") || weatherDescription.includes("дождь") || weatherDescription.includes("облачно")) {
               umbrellaAdvice.textContent = "Возьмите зонт!";
           } else {
               umbrellaAdvice.textContent = "Сегодня зонт не нужен!";
