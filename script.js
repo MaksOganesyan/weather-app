@@ -1,70 +1,47 @@
-// Инициализация Firebase (для версии 8.x)
-var firebaseConfig = {
-    apiKey: "AIzaSyB-TCELmYW-zpU-vfvgLizwBO4s0AXp43c",
-    authDomain: "weathear-app-621cb.firebaseapp.com",
-    projectId: "weathear-app-621cb",
-    storageBucket: "weathear-app-621cb.firebasestorage.app",
-    messagingSenderId: "590496292982",
-    appId: "1:590496292982:web:15d784295e968df7a87f57",
-    measurementId: "G-KB4JKNRMFD"
-};
+async function fetchWeather() {
+  const apiUrl = 'http://localhost:8000/weather'; // URL вашего FastAPI сервера
+  const latitude = 55.7558; // Примерная широта (Москва)
+  const longitude = 37.6173; // Примерная долгота (Москва)
 
-// Инициализация Firebase
-firebase.initializeApp(firebaseConfig);
-const messaging = firebase.messaging();
+  try {
+      const response = await fetch(`${apiUrl}?lat=${latitude}&lon=${longitude}`);
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-// Запрос на разрешение для получения уведомлений
-function requestPermission() {
-  Notification.requestPermission().then(function(permission) {
-    if (permission === "granted") {
-      console.log("Разрешение на уведомления получено!");
-      messaging.getToken({ vapidKey: BHeFesPWJaAvvy_Y6v3xI3TrXYfW1KgdhIERZDY9jfvrNxJVaQ7lRRB9JKa1ZqENI4o1at789bsDJ7XsRUCT2QE })  // Укажите свой VAPID ключ
-        .then(function(token) {
-          console.log("Токен для уведомлений:", token);
-          // Можно отправить токен на сервер для использования
-        })
-        .catch(function(err) {
-          console.log("Ошибка при получении токена:", err);
-        });
-    } else {
-      console.log("Разрешение на уведомления не получено");
-    }
-  });
-}
+      const weatherData = await response.json();
+      console.log("Ответ от API:", weatherData); // Логируем ответ от API
 
-// Отправка уведомлений
-function sendNotification(token) {
-  if (token) {
-    fetch('https://fcm.googleapis.com/fcm/send', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'key=YOUR_SERVER_KEY',  // Укажите ключ сервера
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        to: token,
-        notification: {
-          title: 'Не забудьте взять зонтик!',
-          body: 'Есть вероятность дождя. Возьмите зонтик.',
-        }
-      })
-    })
-    .then(response => response.json())
-    .then(data => console.log('Уведомление отправлено:', data))
-    .catch(error => console.error('Ошибка при отправке уведомления:', error));
+      // Если данные о погоде получены, обновляем элементы на странице
+      const weatherStatus = document.querySelector(".weather-status");
+      const umbrellaAdvice = document.querySelector(".umbrella-advice");
+      const weatherIcon = document.getElementById("weather-icon"); // Находим элемент для картинки
+
+      // Обновляем описание погоды
+      if (weatherStatus && weatherData["Описание"]) {
+          weatherStatus.textContent = weatherData["Описание"];
+      }
+
+      // Обновляем сообщение о зонте
+      if (umbrellaAdvice && weatherData["Сообщение"]) {
+          umbrellaAdvice.textContent = weatherData["Сообщение"];
+      }
+
+      // Обновляем картинку в зависимости от погоды
+      if (weatherIcon) {
+          // Устанавливаем картинку в зависимости от описания погоды
+          if (weatherData["Описание"].includes("пасмурно")) {
+              weatherIcon.src = "image/cloudy.png"; // Пример для облачности
+          } else if (weatherData["Описание"].includes("дождь")) {
+              weatherIcon.src = "image/rainy.png"; // Пример для дождя
+          } else if (weatherData["Описание"].includes("солнечно")) {
+              weatherIcon.src = "image/sunny.png"; // Пример для солнечной погоды
+          }
+      }
+  } catch (error) {
+      console.error("Ошибка при получении данных о погоде:", error);
   }
 }
 
-// Привязка к переключателю
-document.querySelector('.checkbox').addEventListener('change', function() {
-  const isChecked = this.checked;
-  if (isChecked) {
-    console.log("Переключатель включен, уведомление будет отправлено.");
-    requestPermission().then(() => {
-      // Здесь можно отправить уведомление через Firebase, если оно необходимо
-      sendNotification('YOUR_FCM_TOKEN');
-    });
-  } else {
-    console.log("Переключатель выключен, уведомления отключены.");
-  }
-});
+// Вызываем функцию сразу после загрузки страницы
+window.onload = fetchWeather;
