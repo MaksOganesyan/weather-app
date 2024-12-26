@@ -201,3 +201,13 @@ span {
     font-weight: var(--main-font-weight);
     white-space: pre-line;
 }
+
+.temperature {
+    white-space: pre-line;   
+    font-size: 2.4rem;
+}
+
+.weather-status {
+    font-size: 2.4rem;
+   
+}
