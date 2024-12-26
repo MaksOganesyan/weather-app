@@ -43,7 +43,7 @@ if not os.path.exists(static_directory):
     raise RuntimeError(f"Static directory '{static_directory}' does not exist")
 
 # Монтируем папку с изображениями в FastAPI
-app.mount("/project_op", StaticFiles(directory=static_directory), name="project_op")
+app.mount("/static", StaticFiles(directory=static_directory), name="static")
 
 # Запуск сервера
 if __name__ == "__main__":
