@@ -76,5 +76,20 @@ async function fetchWeather() {
   }
 }
 
+// Обработчик для включения/выключения уведомлений
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleButton = document.querySelector('.checkbox');
+  
+  toggleButton.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      console.log("Уведомления включены.");
+      // Здесь можно добавить код для реальной отправки уведомлений
+    } else {
+      console.log("Уведомления отключены.");
+      // Здесь можно добавить код для отключения уведомлений
+    }
+  });
+});
+
 // Вызываем функцию сразу после загрузки страницы
 window.onload = fetchWeather;
